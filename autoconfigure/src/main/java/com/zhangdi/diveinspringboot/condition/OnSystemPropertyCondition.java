@@ -20,9 +20,9 @@ public class OnSystemPropertyCondition implements Condition {
     String propertyName = String.valueOf(attributes.get("name"));
     String propertyValue = String.valueOf(attributes.get("value"));
 
-    String envProperty = context.getEnvironment().getProperty(propertyName);
-    System.out.println(envProperty);
+    String envProperty = System.getProperty(propertyName);
 
+    System.out.println(envProperty + "----" + propertyValue);
     return propertyValue.equals(envProperty);
   }
 }
