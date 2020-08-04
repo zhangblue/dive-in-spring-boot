@@ -2,3 +2,8 @@
 org.springframework.context.ApplicationContextInitializer=\
 com.zhangdi.diveinspringboot.context.AfterHelloWorldApplicationContextInitializer,\
 com.zhangdi.diveinspringboot.context.HelloWorldApplicationContextInitializer
+
+# 自定义 Application Listeners
+org.springframework.context.ApplicationListener=\
+com.zhangdi.diveinspringboot.listener.AfterHelloWordApplicationListener,\
+com.zhangdi.diveinspringboot.listener.HelloWordApplicationListener
