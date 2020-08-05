@@ -1,5 +1,6 @@
 package com.zhangdi.diveinspringboot;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -14,13 +15,15 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class SpringApplicationBootstrap {
 
   public static void main(String[] args) {
-    ConfigurableApplicationContext context = new SpringApplicationBuilder(
-        SpringApplicationBootstrap.class)
-        .web(WebApplicationType.NONE)
-        .run(args);
-
-    // 关闭上下文
-    context.close();
+//    ConfigurableApplicationContext context = new SpringApplicationBuilder(
+//        SpringApplicationBootstrap.class)
+//        .web(WebApplicationType.NONE)
+//        .run(args);
+//
+//    // 关闭上下文
+//    context.close();
+    SpringApplication springApplication = new SpringApplication(SpringApplicationBootstrap.class);
+    springApplication.run(args);
   }
 
 }
