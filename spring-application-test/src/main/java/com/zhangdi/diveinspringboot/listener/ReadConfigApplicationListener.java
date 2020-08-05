@@ -2,6 +2,7 @@ package com.zhangdi.diveinspringboot.listener;
 
 import com.alibaba.fastjson.JSONObject;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
@@ -14,6 +15,7 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.event.SmartApplicationListener;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertiesPropertySource;
 import org.springframework.core.env.PropertySource;
@@ -57,16 +59,13 @@ public class ReadConfigApplicationListener implements EnvironmentPostProcessor,
 
     //如果是zk的话，就从zk中获取参数
     if (Arrays.asList(activeProfiles).contains("remote")) {
-      Map<String, Object> source = environment.getSystemProperties();
-      Map<String, Object> systemEnvironment = environment.getSystemEnvironment();
-      System.out.println("getSystemProperties() = " + JSONObject.toJSONString(source));
-      System.out.println("getSystemEnvironment() = " + JSONObject.toJSONString(systemEnvironment));
-
       MutablePropertySources propertySources = environment.getPropertySources();
 
-      Properties p = new Properties();
-      p.put("test.sex", "boy");
-      propertySources.addFirst(new PropertiesPropertySource("remoteProperties", p));
+      Map<String, Object> mapRemoteValue = new HashMap<>();
+      mapRemoteValue.put("test.sex", "boy");
+      MapPropertySource mapPropertySource = new MapPropertySource("remoteProperties",
+          mapRemoteValue);
+      propertySources.addFirst(mapPropertySource);
     }
   }
 }
